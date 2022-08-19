@@ -55,12 +55,12 @@ public:
       key = key % 255;
 
       // evaluate
-      if (key == 26) // enter
-      // if (key == 10) // enter
-      {
-        bool flag = computeHomo();
-        if (flag)
-          break;
+      if (key == 26 || key == 10 || key == 32) {
+          // enter or space
+          bool flag = computeHomo();
+          if (flag) {
+              break;
+          }
       }
     }
     cv::destroyWindow("image");

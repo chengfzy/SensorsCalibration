@@ -427,6 +427,19 @@ int main(int argc, char **argv) {
 
   int frame_num = 0;
 
+  vector<function<void()>> functions;
+  vector<char> keys = {'q', 'a', 'w', 's', 'e', 'd', 'r', 'f', 't', 'g'};
+  vector<string> infos = {
+      "+X deg", "-X deg", "+Y deg", "-Y deg", "+Z deg", "-Z deg", "+X trans", "-X trans", "+Y trans", "-Y trans",
+  };
+  for (size_t i = 0; i < keys.size(); ++i) {
+      pangolin::RegisterKeyPressCallback(keys[i], [&, i]() {
+          calibration_matrix_ = calibration_matrix_ * modification_list_[i];
+          std::cout << infos[i] << endl;
+          projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_, current_frame, bv_frame);
+      });
+  }
+
   std::cout << "\n=>START\n";
   while (!pangolin::ShouldQuit()) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -452,7 +465,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < 10; i++) {
       if (pangolin::Pushed(mat_calib_box[i])) {
         calibration_matrix_ = calibration_matrix_ * modification_list_[i];
-        std::cout << "Changed!\n";
+        std::cout << infos[i] << endl;
         projector.ProjectToRawImage(img, intrinsic_matrix_, dist,
                                     calibration_matrix_, current_frame,
                                     bv_frame);
