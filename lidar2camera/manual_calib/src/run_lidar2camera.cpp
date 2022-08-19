@@ -322,6 +322,71 @@ int main(int argc, char **argv) {
       img, intrinsic_matrix_, dist, calibration_matrix_);
   int frame_num = 0;
 
+  // keyboard binding
+  // X
+  pangolin::RegisterKeyPressCallback('a', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[0];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('d', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[1];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('s', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[2];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('w', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[3];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  // Y
+  pangolin::RegisterKeyPressCallback('h', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[4];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('k', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[5];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('j', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[6];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('u', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[7];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  // Z
+  pangolin::RegisterKeyPressCallback('1', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[8];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('3', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[9];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('2', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[10];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+  pangolin::RegisterKeyPressCallback('5', [&]() {
+      calibration_matrix_ = calibration_matrix_ * modification_list_[11];
+      std::cout << "Changed!\n";
+      current_frame = projector.ProjectToRawImage(img, intrinsic_matrix_, dist, calibration_matrix_);
+  });
+
   std::cout << "\n=>START\n";
   while (!pangolin::ShouldQuit()) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
